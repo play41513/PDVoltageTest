@@ -1,0 +1,54 @@
+//---------------------------------------------------------------------------
+
+#include <vcl.h>
+#pragma hdrstop
+
+#include "main.h"
+#pragma package(smart_init)
+extern 	clWNetFile *CL_WNETLOG;
+//---------------------------------------------------------------------------
+
+//   Important: Methods and properties of objects in VCL can only be
+//   used in a method called using Synchronize, for example:
+//
+//      Synchronize(&UpdateCaption);
+//
+//   where UpdateCaption could look like:
+//
+//      void __fastcall TWNetFileThread::UpdateCaption()
+//      {
+//        Form1->Caption = "Updated in a thread";
+//      }
+//---------------------------------------------------------------------------
+
+__fastcall TWNetFileThread::TWNetFileThread(bool CreateSuspended)
+	: TThread(CreateSuspended)
+{
+}
+//---------------------------------------------------------------------------
+void __fastcall TWNetFileThread::Execute()
+{
+	NameThreadForDebugging("WNetFileThread");
+	//---- Place thread code here ----
+	while(!Terminated)
+	{
+		if(!CL_WNETLOG->WNetFileConnection())
+			FrmMain->lbLOGStatus->Caption = "(!)Cannot Connect to Server";
+		else
+		{
+			FrmMain->lbLOGStatus->Caption = "";
+			if(FrmMain->que_log.size())
+			{
+				if(CL_WNETLOG->WriteLOG(FrmMain->LOG_FILE_PATH,FrmMain->que_log.front(),false))
+				{
+					FrmMain->que_log.pop();
+					if(FrmMain->que_log.size())
+						FrmMain->lbLOGStatus->Caption = "LOG Update...";
+				}
+				else FrmMain->lbLOGStatus->Caption = "(!)Cannot Connect to Server";
+			}
+		}
+		Sleep(1000);
+    }
+}
+//---------------------------------------------------------------------------

@@ -1,0 +1,17 @@
+//---------------------------------------------------------------------------
+
+#ifndef WNetFileH
+#define WNetFileH
+//---------------------------------------------------------------------------
+#endif
+class clWNetFile
+{
+	private:
+	bool WNetFileConnection();
+	bool AddWNetFilePath(AnsiString PATH);
+	bool AddLocalFilePath(AnsiString PATH);
+
+	public:
+
+	bool WriteLOG(AnsiString PATH,AnsiString Line);
+};

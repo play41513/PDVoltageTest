@@ -1,0 +1,18 @@
+# REALEASE_NOTE
+
+
+## [2.8.3.5R] - 2019-10-28
+### Firmware
+- TI65982-0429.bin
+- Support VID0835&PID2A06, VID0835&PID2A0A, VID0835&PID2A0B, VID0835&PIDFE00
+
+
+## [2.7.2.4R] - 2018-12-5
+### Firmware
+- IA-PDA1_20181001_V3.11_V1.12.07_00.02_2A06.bin
+
+
+## [2.3.5.0R] - 2017-08-21
+### Added
+- Support DS-UCC5, PCB_TYPE_ID_DSUCC6 = 0x60
+- Add the firmware file, DS-UCC5_H10A_F10A-OCP130.bin, to DS-UCC5.

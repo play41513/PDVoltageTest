@@ -1,0 +1,31 @@
+//---------------------------------------------------------------------------
+
+#ifndef FileControlH
+#define FileControlH
+#include <fstream.h>
+#include <string>
+#include <stdio.h>
+#include <stdlib.h>
+#include <direct.h>
+#include <IniFiles.hpp>
+#include "ConstantString.h"
+//---------------------------------------------------------------------------
+
+class cFileControl
+{
+	private:
+		AnsiString strSettingINI;
+		AnsiString strLogName;
+		INI_DESCRIPOR INI_Desc;
+		AnsiString Findfilemsg(AnsiString filename, AnsiString findmsg,
+			int rownum);
+
+	public:
+		bool FindINIFile();
+		INI_DESCRIPOR ReadINIFile();
+		void 		  WriteINIFile(INI_DESCRIPOR info);
+		bool          AddLocalFilePath(AnsiString PATH);
+		void 		  LocalWriteLOG(AnsiString Line);
+
+};
+#endif

@@ -1,0 +1,17 @@
+//---------------------------------------------------------------------------
+
+#ifndef WNetLOGThreadH
+#define WNetLOGThreadH
+//---------------------------------------------------------------------------
+#include <Classes.hpp>
+//---------------------------------------------------------------------------
+class TWNetFileThread : public TThread
+{
+protected:
+	void __fastcall Execute();
+public:
+	__fastcall TWNetFileThread(bool CreateSuspended);
+
+};
+//---------------------------------------------------------------------------
+#endif

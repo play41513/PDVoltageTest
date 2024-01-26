@@ -1,0 +1,24 @@
+//---------------------------------------------------------------------------
+
+#ifndef WNetLOGThreadH
+#define WNetLOGThreadH
+//---------------------------------------------------------------------------
+#include <Classes.hpp>
+//---------------------------------------------------------------------------
+class TWNetFileThread : public TThread
+{
+private:
+
+	bool AddWNetFilePath(AnsiString PATH);
+	bool AddLocalFilePath(AnsiString PATH);
+protected:
+	void __fastcall Execute();
+public:
+	AnsiString WNetFileERROR_MSG();
+	bool WNetFileConnection();
+	bool WriteLOG(AnsiString PATH,AnsiString Line,bool bLocalFile);
+	__fastcall TWNetFileThread(bool CreateSuspended);
+
+};
+//---------------------------------------------------------------------------
+#endif
